@@ -18,7 +18,7 @@ def check_password_policy(s):
         return A
 
     B = True if (password[high-1] == letter) else False
-    return A != B
+    return A^B
 
 with open('input.txt', 'r') as file:
 	lines = file.readlines()
