@@ -1,7 +1,7 @@
 # advent of code 
 # day 4
 
-filename = 'valid.txt'
+filename = 'input.txt'
 
 expected_fields = ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth']
 valid_entry_count = 0
