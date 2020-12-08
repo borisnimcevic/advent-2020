@@ -46,6 +46,6 @@ with open("input.txt", "r") as file:
 
 for left in bag_rules.keys():
     if oneline_search(left):
-        global_counter +=1 
+        global_counter +=1
 
 print(global_counter)
