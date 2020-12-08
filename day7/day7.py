@@ -3,6 +3,7 @@
 bag_rules = dict()
 seen_flag = set()
 result = 0
+global_counter = 0
 
 def extract_bags(s):
     s = s.strip()
@@ -12,26 +13,17 @@ def extract_bags(s):
     #return (number,bag)
     return bag
 
-def find_bag(bag_type, counter):
-    counter+=1
-    # print(bag_type)
-    if bag_type in seen_flag:
-        counter-=1
-    else:
-        seen_flag.add(bag_type)
-    if len(bag_rules[bag_type]) == 0:
-        # print("Last bag")
+
+def oneline_search(key):
+    if len(bag_rules[key]) == 0:
         return 0
     else:
         sum = 0
-        for righ_side in bag_rules[bag_type]:
-            if righ_side == 'shiny gold':
-                # print("It's shiny gold! " + str(counter))
-                sum = counter
-                counter = 0
+        for right_side in bag_rules[key]:
+            if right_side == 'shiny gold':
+                return 1
             else:
-                sum += find_bag(righ_side,counter)
-                counter = 0
+                sum += oneline_search(right_side)
         return sum
 
 with open("input.txt", "r") as file:
@@ -53,7 +45,7 @@ with open("input.txt", "r") as file:
     print(bag_rules)
 
 for left in bag_rules.keys():
-    result += find_bag(left,0)
+    if oneline_search(left):
+        global_counter +=1 
 
-# result = find_bag('muted yellow', 0)
-print(result)
+print(global_counter)
